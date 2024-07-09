@@ -1,10 +1,10 @@
 from config import dp
 from aiogram.utils import executor
-from handlers import commands, echo
+from handlers import commands, echo, quiz
 import logging
 
 commands.register_commands(dp)
-
+quiz.register_quiz(dp)
 
 
 # Эхо функция вызывать самым последним

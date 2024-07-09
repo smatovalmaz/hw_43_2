@@ -1,29 +1,31 @@
 from aiogram import types, Dispatcher
-
+import random
+from config import bot, dp
+games=['⚽', '🎰', '🏀', '🎯', '🎳', '🎲']
 
 async def echo(message: types.Message):
     text=message.text
 
     if text.isdigit():
         await message.answer(int(text)**2)
+    elif text=='game':
+        randomm=random.choice(games)
+        bott=await bot.send_dice(chat_id=message.from_user.id, emoji=randomm)
+        users=await bot.send_dice(chat_id=message.from_user.id, emoji=randomm)
+        await bot.send_message(
+            chat_id=message.from_user.id,
+            text=f'bot: {bott.dice.value}\n'
+                 f'users: {users.dice.value}'
+        )
+        if users.dice.value < bott.dice.value:
+            await message.answer('бот выиграл')
+        elif bott.dice.value < users.dice.value:
+            await message.answer('юзер выиграл')
+        else:
+            await message.answer('ничья')
+
     else:
         await message.answer(text)
-
-    # def send_file(file_path):
-    #     print(f"Sending file: {file_path}")
-
-    #
-    # message1 = 5
-    # message2 = "Hello, world!"
-    # file_path = "example.txt"
-    #
-    # result1 = message_handler(message1)
-    # result2 = message_handler(message2)
-    #
-    # print(f"Result 1: {result1}")
-    # print(f"Result 2: {result2}")
-    #
-    # send_file(file_path)
 
 
 
