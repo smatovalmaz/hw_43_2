@@ -1,6 +1,8 @@
 from aiogram import types, Dispatcher
 import random
-from config import bot, dp
+from config import bot
+
+
 games=['⚽', '🎰', '🏀', '🎯', '🎳', '🎲']
 
 async def echo(message: types.Message):
