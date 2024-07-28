@@ -4,7 +4,7 @@ from aiogram.utils import executor
 import buttons
 from config import dp, bot, Admin
 import logging
-from handlers import commands, echo, quiz, FSM_shop
+from handlers import commands, echo, quiz, FSM_store, FSM_reg
 
 async def on_startup(_):
     for i in Admin:
@@ -17,7 +17,9 @@ async def on_shutdown(_):
 
 commands.register_commands(dp)
 quiz.register_quiz(dp)
-FSM_shop.register_fsm_for_user(dp)
+FSM_reg.refister_fsm_for_user(dp)
+FSM_store.register_fsm_for_user(dp)
+
 
 
 # Эхо функция вызывать самым последним
